@@ -762,6 +762,7 @@
 const template = `We've reviewed our removal orders and discovered some shipments whose delivery status is unclear. Could you please check on your end? We're unable to verify the tracking status. If they were lost in transit, could you kindly issue a reimbursement`;
 
 let downloadedFiles = [];
+let autoSaveInterval;
 
 function saveThemeSettings() {
     const body = document.body;
@@ -1292,12 +1293,17 @@ function deleteBackup(backupId) {
 // Add this to your existing DOMContentLoaded event listener
 document.addEventListener('DOMContentLoaded', function() {
     // Your existing initialization code...
-    
-    // Display any existing backups
     displayBackups();
     
-    // Set up auto-save
-    setInterval(createBackup, 5 * 60 * 1000); // Auto-save every 5 minutes
+    // Start auto-save when page loads
+    autoSaveInterval = setInterval(createBackup, 5 * 60 * 1000); // Auto-save every 5 minutes
+});
+
+    window.addEventListener('beforeunload', function() {
+    // Clear the auto-save interval when page is closed
+    if (autoSaveInterval) {
+        clearInterval(autoSaveInterval);
+    }
 });
     
 // Initialize file history when the page loads
