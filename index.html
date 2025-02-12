@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Template Counter & Note Taker</title>
     <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body data-color="blue">
     <div class="container">
@@ -50,6 +50,17 @@
                             </button>
                         </div>
                     </div>
+                    <div class="backup-section">
+                        <h4>Data Backup</h4>
+                        <div class="backup-info">
+                            <p>Last backup: <span id="lastBackupTime">Never</span></p>
+                            <p>Next cleanup: <span id="nextCleanupTime">-</span></p>
+                        </div>
+                        <div class="backup-actions">
+                            <button onclick="createBackup()">Create Backup</button>
+                            <button onclick="restoreLastBackup()">Restore Last Backup</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -78,6 +89,6 @@
             <div id="merchantList"></div>
         </div>
     </div>
-    <script src="js/script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
