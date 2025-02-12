@@ -1213,6 +1213,43 @@ function telegramShare() {
     }, 500);
 }
 
+    // Function to save textarea content
+function saveTextareaContent() {
+    const textarea = document.getElementById('noteArea');
+    localStorage.setItem('savedNoteContent', textarea.value);
+}
+
+// Function to load saved content
+function loadSavedContent() {
+    const savedContent = localStorage.getItem('savedNoteContent');
+    if (savedContent) {
+        document.getElementById('noteArea').value = savedContent;
+        countTemplates(); // Update the counters
+    }
+}
+
+// Add these event listeners:
+
+// Save content when typing (with debounce to prevent too frequent saves)
+document.getElementById('noteArea').addEventListener('input', debounce(function() {
+    saveTextareaContent();
+}, 1000)); // Save 1 second after user stops typing
+
+// Load saved content when page opens
+document.addEventListener('DOMContentLoaded', function() {
+    // Your existing initialization code...
+    loadSavedContent(); // Add this line
+});
+
+// Debounce function (add this if you don't already have it)
+function debounce(func, wait) {
+    let timeout;
+    return function() {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func.apply(this, arguments), wait);
+    };
+}
+
     // Function to create a backup
 function createBackup() {
     const textarea = document.getElementById('noteArea');
