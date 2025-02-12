@@ -1,0 +1,758 @@
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap');
+
+:root {
+    --primary-bg: #f5f5f5;
+    --primary-bg-tint: #f0f4fc;
+    --container-bg: white;
+    --text-color: #333;
+    --button-primary: #1a73e8;
+    --button-hover: #1557b0;
+    --button-secondary: #1a73e8;
+    --border-color: #dadce0;
+    --shadow-color: rgba(60,64,67,0.3);
+    --button-primary-rgb: 26, 115, 232;
+}
+
+[data-color="blue"] {
+    --button-primary: #1a73e8;
+    --button-hover: #1557b0;
+    --button-secondary: #1a73e8;
+    --primary-bg-tint: #f0f4fc;
+}
+
+[data-color="green"] {
+    --button-primary: #0f9d58;
+    --button-hover: #0b8043;
+    --button-secondary: #0f9d58;
+    --primary-bg-tint: #f0faf4;
+    --button-primary-rgb: 15, 157, 88;
+}
+
+[data-color="purple"] {
+    --button-primary: #9334e6;
+    --button-hover: #7627c4;
+    --button-secondary: #9334e6;
+    --primary-bg-tint: #f7f0fc;
+    --button-primary-rgb: 147, 52, 230;
+}
+
+[data-color="red"] {
+    --button-primary: #ea4335;
+    --button-hover: #d33828;
+    --button-secondary: #ea4335;
+    --primary-bg-tint: #fdf1f0;
+    --button-primary-rgb: 234, 67, 53;
+}
+
+[data-color="pink"] {
+    --button-primary: #e91e63;
+    --button-hover: #c2185b;
+    --button-secondary: #e91e63;
+    --primary-bg-tint: #fce4ec;
+    --button-primary-rgb: 233, 30, 99;
+}
+
+[data-theme="dark"] {
+    --primary-bg: rgb(23, 33, 43);
+    --container-bg: #292a2d;
+    --text-color: #e8eaed;
+    --border-color: #3c4043;
+    --shadow-color: rgba(0,0,0,0.3);
+}
+
+    [data-theme="dark"] {
+        --primary-bg: rgb(23, 33, 43);  /* New dark mode color */
+        --container-bg: #292a2d;
+        --text-color: #e8eaed;
+        --border-color: #3c4043;
+        --shadow-color: rgba(0,0,0,0.3);
+        --button-primary: #1a1a1a;
+        --button-hover: #2a2a2a;
+        --button-secondary: #1a1a1a;
+    }
+
+    [data-theme="dark"][data-color="blue"] {
+        --primary-bg: #1a1c20;
+        --primary-bg-tint: #1a1d24;
+        --button-primary: #134c96;
+        --button-hover: #0e3872;
+        --button-secondary: #134c96;
+    }
+
+    [data-theme="dark"][data-color="green"] {
+        --primary-bg: #1a1c20;
+        --primary-bg-tint: #1a211d;
+        --button-primary: #0b7440;
+        --button-hover: #085c32;
+        --button-secondary: #0b7440;
+    }
+
+    [data-theme="dark"][data-color="purple"] {
+        --primary-bg: #1a1c20;
+        --primary-bg-tint: #1d1a24;
+        --button-primary: #7022b7;
+        --button-hover: #5a1b96;
+        --button-secondary: #7022b7;
+    }
+
+    [data-theme="dark"][data-color="red"] {
+        --primary-bg: #1a1c20;
+        --primary-bg-tint: #211a1a;
+        --button-primary: #b8352a;
+        --button-hover: #962b22;
+        --button-secondary: #b8352a;
+    }
+
+    [data-theme="dark"][data-color="pink"] {
+        --primary-bg: #1a1c20;
+        --primary-bg-tint: #211a1e;
+        --button-primary: #c2185b;
+        --button-hover: #880e4f;
+        --button-secondary: #c2185b;
+    }
+
+    body {
+        font-family: 'Google Sans', Arial, sans-serif;
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: var(--primary-bg-tint);
+        color: var(--text-color);
+        transition: all 0.3s ease;
+    }
+    
+    .container {
+        background-color: var(--container-bg);
+        padding: 20px;
+        border-radius: 16px;
+        box-shadow: 0 4px 6px var(--shadow-color);
+        box-sizing: border-box;
+    }
+    
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .header h2 {
+        margin: 0;
+        color: var(--button-primary);
+        font-family: 'Google Sans', Arial, sans-serif;
+        font-weight: 500;
+    }
+
+    [data-theme="dark"] .header h2 {
+        color: white !important;  /* Force white color in dark mode */
+    }
+
+    .settings-toggle {
+        background: none;
+        border: none;
+        color: var(--text-color);
+        padding: 8px;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .settings-toggle:hover {
+        background-color: var(--primary-bg-tint);
+    }
+
+    .settings-toggle::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: var(--button-primary);
+        opacity: 0.08;
+        border-radius: 50%;
+        transform: scale(0);
+        transition: transform 0.3s ease;
+    }
+
+    .settings-toggle:hover::before {
+        transform: scale(1);
+    }
+
+    .settings-toggle svg {
+        position: relative;
+        z-index: 1;
+    }
+
+    .settings-popup {
+        position: fixed;
+        top: 0;
+        right: -400px;
+        width: 350px;
+        height: 100vh;
+        background-color: var(--container-bg);
+        box-shadow: -2px 0 8px var(--shadow-color);
+        transition: right 0.3s ease;
+        z-index: 1000;
+    }
+
+    .settings-popup.active {
+        right: 0;
+    }
+
+    .settings-content {
+        padding: 20px;
+    }
+
+    .settings-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 24px;
+    }
+
+    .settings-header h3 {
+        margin: 0;
+        font-family: 'Google Sans', Arial, sans-serif;
+        font-weight: 500;
+        color: var(--button-primary);
+    }
+
+    [data-theme="dark"] .settings-header h3,
+    [data-theme="dark"] .settings-label,
+    [data-theme="dark"] .file-history h4 {
+        color: white !important;
+    }
+
+    .close-settings {
+        background: none;
+        border: none;
+        color: var(--text-color);
+        font-size: 24px;
+        padding: 4px 8px;
+        cursor: pointer;
+    }
+
+    .close-settings:hover {
+        background: none;
+        transform: none;
+    }
+
+    .settings-label {
+        margin: 16px 0 8px 0;
+        font-family: 'Google Sans', Arial, sans-serif;
+        font-weight: 500;
+        color: var(--button-primary);
+    }
+
+    .settings-body .theme-controls {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .settings-body .color-picker {
+        margin: 8px 0;
+    }
+
+    .theme-controls {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .color-picker {
+        display: flex;
+        gap: 5px;
+        margin-right: 10px;
+    }
+
+    .color-option {
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        cursor: pointer;
+        border: 2px solid transparent;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .color-option:hover {
+        transform: scale(1.1);
+    }
+
+    .color-option.active {
+        border-color: var(--text-color);
+    }
+
+    .color-blue { background-color: #1a73e8; }
+    .color-green { background-color: #0f9d58; }
+    .color-purple { background-color: #9334e6; }
+    .color-red { background-color: #ea4335; }
+    .color-pink { background-color: #e91e63; }
+
+    .ripple {
+        position: absolute;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.5);
+        transform: scale(0);
+        animation: ripple-effect 0.6s linear;
+        pointer-events: none;
+    }
+
+    @keyframes ripple-effect {
+        0% {
+            transform: scale(0);
+            opacity: 0.5;
+        }
+        100% {
+            transform: scale(100);
+            opacity: 0;
+        }
+    }
+
+    .theme-toggle {
+        border-radius: 50px;
+        padding: 8px 16px;
+        background-color: var(--button-secondary);
+        color: white;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-family: 'Google Sans', Arial, sans-serif;
+        width: 100%;
+        justify-content: center;
+        display: flex;
+        margin: 8px 0;
+    }
+    
+    textarea {
+        width: 100%;
+        box-sizing: border-box;
+        height: 300px;
+        margin: 10px 0;
+        padding: 10px;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        resize: vertical;
+        background-color: var(--container-bg);
+        color: var(--text-color);
+        line-height: 1.5;
+        text-align: left;
+        direction: ltr;
+        font-family: monospace;
+    }
+
+    textarea::-webkit-scrollbar {
+        width: 12px;
+    }
+
+    textarea::-webkit-scrollbar-track {
+        background: var(--primary-bg);
+        border-radius: 10px;
+    }
+
+    textarea::-webkit-scrollbar-thumb {
+        background: var(--button-primary);
+        border-radius: 10px;
+        border: 3px solid var(--primary-bg);
+    }
+
+    textarea::-webkit-scrollbar-thumb:hover {
+        background: var(--button-hover);
+    }
+    
+    button {
+        background-color: var(--button-primary);
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        margin: 5px;
+        transition: all 0.3s ease;
+        font-family: 'Google Sans', Arial, sans-serif;
+        position: relative;
+        overflow: hidden; /* Add this to contain ripple effect */
+    }
+    
+    button:hover {
+        background-color: var(--button-hover);
+        transform: translateY(-1px);
+        box-shadow: 0 1px 2px rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15);
+    }
+
+    /* Add these styles for disabled buttons */
+    button:disabled {
+        background-color: rgba(var(--button-primary-rgb), 0.3);
+        cursor: not-allowed;
+        transform: none !important;
+        box-shadow: none !important;
+    }
+
+    button:disabled:hover {
+        background-color: rgba(var(--button-primary-rgb), 0.3);
+        transform: none;
+        box-shadow: none;
+    }
+
+    .stats {
+        padding: 15px;
+        background-color: var(--container-bg);
+        border-radius: 12px;
+        border: 1px solid var(--border-color);
+    }
+
+    .stats h3 {
+        font-family: 'Google Sans', Arial, sans-serif;
+        font-weight: 500;
+        color: var(--button-primary);
+        margin-top: 0;
+    }
+
+    .merchant-count, .total-templates {
+        display: inline-flex;
+        margin: 0;
+        align-items: center;
+        color: var(--text-color);
+    }
+
+    .merchant-stats {
+        margin: 8px 0;
+        padding: 10px 20px; /* Increased horizontal padding */
+        background-color: rgba(var(--button-primary-rgb), 0.05);
+        border: 1px solid var(--border-color);
+        border-radius: 50px; /* Changed to 50px to make it pill-shaped */
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        font-size: 0.9em;
+        transition: background-color 0.3s ease;
+    }
+
+    /* Add hover effect */
+    .merchant-stats:hover {
+        background-color: rgba(var(--button-primary-rgb), 0.08);
+    }
+
+    /* Add selected state when checkbox is checked */
+    .merchant-stats:has(.merchant-checkbox:checked) {
+        background-color: rgba(var(--button-primary-rgb), 0.12);
+    }
+
+    .merchant-stats:first-child {
+        margin-top: 10px; /* Add this line */
+    }
+
+    .merchant-stats > div {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start; /* Changed from center to flex-start */
+        width: 100%;
+    }
+
+    .merchant-stats span {
+        text-align: left; /* Changed from center to left */
+    }
+
+    .merchant-actions {
+        display: flex;
+        gap: 10px;
+    }
+
+    .merchant-checkbox {
+        accent-color: var(--button-primary);
+        transform: scale(1.1);
+        margin-right: 8px;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        width: 18px;
+        height: 18px;
+        border: 2px solid var(--button-primary);
+        border-radius: 50%;
+        outline: none;
+        cursor: pointer;
+        position: relative;
+        transition: all 0.2s ease;
+    }
+
+    .merchant-checkbox:checked {
+        background-color: var(--button-primary);
+    }
+
+    .merchant-checkbox:checked::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 8px;
+        height: 8px;
+        background-color: white;
+        border-radius: 50%;
+    }
+
+    .merchant-checkbox:hover {
+        border-color: var(--button-hover);
+    }
+
+    .merchant-checkbox:checked:hover {
+        background-color: var(--button-hover);
+    }
+
+    .bulk-actions {
+        margin-top: 15px;
+        margin-bottom: 20px; /* Add this line */
+        display: flex;
+        gap: 10px;
+    }
+
+    .total-templates {
+        margin-bottom: 15px;
+        font-weight: bold;
+        color: var(--text-color);
+    }
+
+    .button-ripple {
+        position: absolute;
+        background: rgba(255, 255, 255, 0.7);
+        border-radius: 50%;
+        width: 100px;
+        height: 100px;
+        margin-top: -50px;
+        margin-left: -50px;
+        animation: ripple 0.5s linear forwards;
+        pointer-events: none;
+    }
+
+    @keyframes ripple {
+        0% {
+            transform: scale(0);
+            opacity: 0.5;
+        }
+        100% {
+            transform: scale(4);
+            opacity: 0;
+        }
+    }
+
+    .button-counter-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .button-group {
+        display: flex;
+        gap: 10px;
+    }
+
+    .counter-pill {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        background-color: var(--primary-bg);
+        padding: 8px 20px;
+        border-radius: 50px;
+    }
+
+    .counter-pill p {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    /* Add these styles for the file history section */
+    .file-history {
+        margin-top: 24px;
+    }
+
+    .file-history h4 {
+        margin: 0 0 12px 0;
+        font-family: 'Google Sans', Arial, sans-serif;
+        font-weight: 500;
+        color: var(--button-primary);
+    }
+
+    .file-list {
+        max-height: 300px;
+        overflow-y: auto;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        background: var(--primary-bg);
+    }
+
+    .file-list:empty::after {
+        content: 'No files yet';
+        display: block;
+        padding: 16px;
+        text-align: center;
+        color: var(--text-color);
+        opacity: 0.7;
+    }
+
+    .file-item {
+        display: flex;
+        align-items: center;
+        padding: 12px;
+        border-bottom: 1px solid var(--border-color);
+        cursor: grab; /* Added to show draggability */
+        background: var(--container-bg);
+        transition: background-color 0.2s ease;
+    }
+
+    .file-item:last-child {
+        border-bottom: none;
+    }
+
+    .file-item:hover {
+        background-color: rgba(var(--button-primary-rgb), 0.05);
+    }
+
+    .file-item.dragging {
+        cursor: grabbing; /* Added to show dragging */
+        opacity: 0.5;
+        background-color: rgba(var(--button-primary-rgb), 0.08);
+    }
+
+    .file-item::before {
+        content: '⋮⋮';  /* Drag handle indicator */
+        margin-right: 8px;
+        color: var(--text-color);
+        opacity: 0.5;
+    }
+
+    .file-item:hover::before {
+        opacity: 0.8;
+    }
+
+    .file-item.dragging {
+        opacity: 0.5;
+        background-color: rgba(var(--button-primary-rgb), 0.08);
+    }
+
+    .file-item input[type="checkbox"] {
+        margin-right: 12px;
+        accent-color: var(--button-primary);
+    }
+
+    .file-item-name {
+        flex-grow: 1;
+        margin-right: 12px;
+        color: var(--text-color);
+    }
+
+    .file-item-date {
+        color: var(--text-color);
+        opacity: 0.7;
+        font-size: 0.9em;
+    }
+
+    .file-actions {
+        margin-top: 12px;
+        display: flex;
+        gap: 8px;
+    }
+
+/* New styles for backup section */
+.backup-section {
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border-color);
+}
+
+.backup-info {
+    margin: 12px 0;
+    padding: 12px;
+    background-color: var(--primary-bg);
+    border-radius: 8px;
+}
+
+.backup-info p {
+    margin: 4px 0;
+    font-size: 14px;
+}
+
+.backup-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+</style>
+</head>
+<body data-color="blue">
+<div class="container">
+    <div class="header">
+        <h2>Template Counter &amp; Note Taker</h2>
+        <button class="settings-toggle" onclick="toggleSettings(event)">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path>
+            </svg>
+        </button>
+    </div>
+
+    <div class="settings-popup" id="settingsPopup">
+        <div class="settings-content">
+            <div class="settings-header">
+                <h3>Settings</h3>
+                <button class="close-settings" onclick="toggleSettings()">×</button>
+            </div>
+            <div class="settings-body">
+                <div class="theme-controls">
+                    <p class="settings-label">Theme Color</p>
+                    <div class="color-picker">
+                        <div class="color-option color-blue active" onclick="setColor('blue')" title="Blue"></div>
+                        <div class="color-option color-green" onclick="setColor('green')" title="Green"></div>
+                        <div class="color-option color-purple" onclick="setColor('purple')" title="Purple"></div>
+                        <div class="color-option color-red" onclick="setColor('red')" title="Red"></div>
+                        <div class="color-option color-pink" onclick="setColor('pink')" title="Pink"></div>
+                    </div>
+                    <p class="settings-label">Display Mode</p>
+                    <button class="theme-toggle" onclick="toggleTheme()">🌙 Dark Mode</button>
+                </div>
+                <div class="file-history">
+                    <h4>Downloaded Files</h4>
+                    <div class="file-list" id="fileList"></div>
+                    <div class="file-actions">
+                        <button onclick="deleteSelectedFiles()" id="deleteSelectedFiles" disabled="">Delete Selected</button>
+                        <button onclick="telegramShare()" title="Share to Telegram">
+                            <svg style="width: 16px; height: 16px; margin-right: 6px; vertical-align: text-bottom;" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M9.78,18.65L10.06,14.42L17.74,7.5C18.08,7.19 17.67,7.04 17.22,7.31L7.74,13.3L3.64,12C2.76,11.75 2.75,11.14 3.84,10.7L19.81,4.54C20.54,4.21 21.24,4.72 20.96,5.84L18.24,18.65C18.05,19.56 17.5,19.78 16.74,19.36L12.6,16.3L10.61,18.23C10.38,18.46 10.19,18.65 9.78,18.65Z"></path>
+                            </svg>
+                            Share to Telegram
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <textarea id="noteArea" placeholder="Enter your notes here..."></textarea>
+    
+    <div class="button-counter-container">
+        <div class="button-group">
+            <button onclick="addSeparator()">Add Separator</button>
+            <button onclick="addSpacing()">Add Spacing</button>
+            <button onclick="clearText()">Clear</button>
+        </div>
+        <div class="counter-pill">
+            <p class="merchant-count">Merchants: <span id="merchantCount">0</span></p>
+            <p class="total-templates">Cases: <span id="totalTemplates">0</span></p>
+        </div>
+    </div>
+    
+    <div class="stats">
+        <div class="bulk-actions">
+            <button onclick="downloadSelectedMerchants()" disabled="">Download Selected</button>
+            <button onclick="clearSelectedMerchants()" disabled="">Clear Selected</button>
+            <button onclick="selectAllMerchants()">Select All</button>
+            <button onclick="downloadAllNotes()">Download All</button>
+        </div>
+        <div id="merchantList"></div>
+    </div>
+</div>
