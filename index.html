@@ -1230,15 +1230,18 @@ function createBackup() {
     // Get existing backups
     let backups = JSON.parse(localStorage.getItem('templateBackups') || '[]');
     
-    // Add new backup and keep only last 10
+    // Add new backup and keep only last 5
     backups.unshift(backup);
-    backups = backups.slice(0, 10);
+    backups = backups.slice(0, 5); // Changed from 10 to 5
     
     // Save to localStorage
     localStorage.setItem('templateBackups', JSON.stringify(backups));
     
     // Update display
     displayBackups();
+    
+    // Show feedback to user
+    alert('Backup created successfully!');
 }
 
 // Function to display backups
