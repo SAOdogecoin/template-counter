@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template Counter & Note Taker</title>
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-color="blue">
+    <div class="container">
+        <div class="header">
+            <h2>Template Counter & Note Taker</h2>
+            <button class="settings-toggle" onclick="toggleSettings(event)">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path>
+                </svg>
+            </button>
+        </div>
+
+        <div class="settings-popup" id="settingsPopup">
+            <div class="settings-content">
+                <div class="settings-header">
+                    <h3>Settings</h3>
+                    <button class="close-settings" onclick="toggleSettings()">×</button>
+                </div>
+                <div class="settings-body">
+                    <div class="theme-controls">
+                        <p class="settings-label">Theme Color</p>
+                        <div class="color-picker">
+                            <div class="color-option color-blue active" onclick="setColor('blue')" title="Blue"></div>
+                            <div class="color-option color-green" onclick="setColor('green')" title="Green"></div>
+                            <div class="color-option color-purple" onclick="setColor('purple')" title="Purple"></div>
+                            <div class="color-option color-red" onclick="setColor('red')" title="Red"></div>
+                            <div class="color-option color-pink" onclick="setColor('pink')" title="Pink"></div>
+                        </div>
+                        <p class="settings-label">Display Mode</p>
+                        <button class="theme-toggle" onclick="toggleTheme()">🌙 Dark Mode</button>
+                    </div>
+                    <div class="file-history">
+                        <h4>Downloaded Files</h4>
+                        <div class="file-list" id="fileList"></div>
+                        <div class="file-actions">
+                            <button onclick="deleteSelectedFiles()" id="deleteSelectedFiles" disabled>Delete Selected</button>
+                            <button onclick="telegramShare()" title="Share to Telegram">
+                                <svg style="width: 16px; height: 16px; margin-right: 6px; vertical-align: text-bottom;" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M9.78,18.65L10.06,14.42L17.74,7.5C18.08,7.19 17.67,7.04 17.22,7.31L7.74,13.3L3.64,12C2.76,11.75 2.75,11.14 3.84,10.7L19.81,4.54C20.54,4.21 21.24,4.72 20.96,5.84L18.24,18.65C18.05,19.56 17.5,19.78 16.74,19.36L12.6,16.3L10.61,18.23C10.38,18.46 10.19,18.65 9.78,18.65Z"></path>
+                                </svg>
+                                Share to Telegram
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <textarea id="noteArea" placeholder="Enter your notes here..."></textarea>
+        
+        <div class="button-counter-container">
+            <div class="button-group">
+                <button onclick="addSeparator()">Add Separator</button>
+                <button onclick="addSpacing()">Add Spacing</button>
+                <button onclick="clearText()">Clear</button>
+            </div>
+            <div class="counter-pill">
+                <p class="merchant-count">Merchants: <span id="merchantCount">0</span></p>
+                <p class="total-templates">Cases: <span id="totalTemplates">0</span></p>
+            </div>
+        </div>
+        
+        <div class="stats">
+            <div class="bulk-actions">
+                <button onclick="downloadSelectedMerchants()" disabled>Download Selected</button>
+                <button onclick="clearSelectedMerchants()" disabled>Clear Selected</button>
+                <button onclick="selectAllMerchants()">Select All</button>
+                <button onclick="downloadAllNotes()">Download All</button>
+            </div>
+            <div id="merchantList"></div>
+        </div>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>
