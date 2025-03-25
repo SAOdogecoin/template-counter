@@ -10,8 +10,17 @@ let downloadedFiles = [];
 
 // Data backup functionality
 function createBackup() {
+    const noteAreaValue = document.getElementById('noteArea').value;
+    const merchantsCount = document.getElementById('merchantCount').textContent;
+    const templatesCount = document.getElementById('totalTemplates').textContent;
+
+    if (merchantsCount == 0 && templatesCount == 0) {
+        console.log("No merchants or templates to backup.");
+        return;
+    }
+
     const backupData = {
-        noteArea: document.getElementById('noteArea').value,
+        noteArea: noteAreaValue,
         downloadedFiles: downloadedFiles,
         timestamp: new Date().toISOString()
     };
